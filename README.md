@@ -5,9 +5,13 @@ Scripts to create an S3 bucket in AWS.
 Parameters:
 
 Region
+
 Bucket Name
+
 Access Key Id
+
 Secret Access Key
+
 
 ## Bash
 
