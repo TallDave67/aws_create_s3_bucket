@@ -1,4 +1,4 @@
-# aws_create_s3_bucket
+# Create S3 Bucket
 
 Scripts to create an S3 bucket in AWS.
 
