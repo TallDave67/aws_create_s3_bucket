@@ -53,11 +53,11 @@ def create_bucket_with_cloudformation(region, bucket_name, access_key_id, secret
 
     # Create template file
     template_content = generate_cloudformation_template(region, bucket_name)
-    file_name = "s3_bucket_template.yaml"
-    save_template_to_file(template_content, file_name)
+    template_file_name = "s3_bucket_template.yaml"
+    save_template_to_file(template_content, template_file_name)
 
     # Call bash script to create the bucket via cloud formation
-    command = f"aws_create_s3_bucket_via_cloud_formation.sh {region} {bucket_name} {access_key_id} {secret_access_key} {file_name} {output_file_name}"
+    command = f"aws_create_s3_bucket_via_cloud_formation.sh {region} {bucket_name} {access_key_id} {secret_access_key} {template_file_name} {output_file_name}"
     subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
 
     # Read output file

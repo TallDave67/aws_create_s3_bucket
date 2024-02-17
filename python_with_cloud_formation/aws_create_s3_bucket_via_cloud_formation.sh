@@ -8,7 +8,7 @@ fi
 
 # Check if required arguments are provided
 if [ $# -ne 6 ]; then
-    echo "Usage: $0 <aws-region> <bucket-name> <access-key-id> <secret-access-key> <template_file_name>"
+    echo "Usage: $0 <aws-region> <bucket-name> <access-key-id> <secret-access-key> <template-file-name> <output-file-name>"
     exit 1
 fi
 
