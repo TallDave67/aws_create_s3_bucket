@@ -7,18 +7,21 @@ if ! command -v aws &> /dev/null; then
 fi
 
 # Check if required arguments are provided
-if [ $# -ne 4 ]; then
-    echo "Usage: $0 <aws-region> <bucket-name> <access-key-id> <secret-access-key>"
+if [ $# -lt 4 ]; then
+    echo "Usage: $0 <aws-region> <bucket-name> <access-key-id> <secret-access-key> [OPTIONAL]<session-token>"
     exit 1
 fi
 
 AWS_REGION="$1"
 BUCKET_NAME="$2"
-ACCESS_KEY_ID="$3"
-SECRET_ACCESS_KEY="$4"
 
-export AWS_ACCESS_KEY_ID="$ACCESS_KEY_ID"
-export AWS_SECRET_ACCESS_KEY="$SECRET_ACCESS_KEY"
+export AWS_ACCESS_KEY_ID="$3"
+export AWS_SECRET_ACCESS_KEY="$4"
+
+# the session token is required when using temporary keys
+if [ $# -eq 5 ]; then
+    export AWS_SESSION_TOKEN="$5"
+fi
 
 # Check if the bucket already exists
 if aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
